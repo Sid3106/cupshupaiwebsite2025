@@ -1,0 +1,64 @@
+.tickerContainer {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0.9) 100%);
+  padding: 40px 0;
+}
+
+.tickerContainer::before,
+.tickerContainer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.tickerContainer::before {
+  left: 0;
+  background: linear-gradient(to right, white, transparent);
+}
+
+.tickerContainer::after {
+  right: 0;
+  background: linear-gradient(to left, white, transparent);
+}
+
+.tickerTrack {
+  display: flex;
+  will-change: transform;
+}
+
+.tickerLogo {
+  flex: 0 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.tickerLogo:hover {
+  transform: scale(1.05);
+}
+
+.tickerLogo img {
+  height: 72px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .tickerContainer::before,
+  .tickerContainer::after {
+    width: 60px;
+  }
+
+  .tickerLogo img {
+    height: 48px;
+  }
+}

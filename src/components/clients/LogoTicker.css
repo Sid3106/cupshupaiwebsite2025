@@ -1,0 +1,85 @@
+.logo-ticker-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0.9) 100%);
+  padding: 2.5rem 0;
+}
+
+/* Fade edges */
+.logo-ticker-container::before,
+.logo-ticker-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.logo-ticker-container::before {
+  left: 0;
+  background: linear-gradient(to right, white, transparent);
+}
+
+.logo-ticker-container::after {
+  right: 0;
+  background: linear-gradient(to left, white, transparent);
+}
+
+.logo-ticker {
+  display: flex;
+  animation: ticker 20s linear infinite;
+  gap: 40px; /* Increased spacing between logos */
+}
+
+.logo-item {
+  flex: 0 0 auto;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.logo-item img {
+  height: 72px; /* Increased from 60px (20% increase) */
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.logo-item:hover {
+  transform: scale(1.05);
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Pause animation on hover */
+.logo-ticker-container:hover .logo-ticker {
+  animation-play-state: paused;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .logo-ticker-container::before,
+  .logo-ticker-container::after {
+    width: 60px;
+  }
+  
+  .logo-item img {
+    height: 48px; /* Maintain proportional size on mobile */
+  }
+  
+  .logo-ticker {
+    gap: 25px; /* Adjusted spacing for mobile */
+  }
+}
